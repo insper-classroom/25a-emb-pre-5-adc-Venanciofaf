@@ -28,8 +28,8 @@ void process_task(void *p) {
 
     int i = 0;
     int j = 0;
-    int vec_aux[50];
-    int vec_final[50];
+    int vec_aux[64];
+    int vec_final[64];
     int y; 
     while (true) {
         if (xQueueReceive(xQueueData, &data, 100)) {
@@ -40,22 +40,21 @@ void process_task(void *p) {
             if (i < 5){
 
                 vec_aux[i] = data;
-                printf("O Elemento do vetor é %d \n" , vec_aux[i]);
+                //printf("O Elemento do vetor é %d \n" , vec_aux[i]);
             }
 
-            else{
+            else if (i <= 63){
                 
     
                 y = (int) ((vec_aux[i-1] + vec_aux[i-2] + vec_aux[i-3] + vec_aux[i-4] + vec_aux[i-5]) / 5);
                 vec_aux[i] = data;
                 vec_final[j] = y;
                 //printf("Y é : %d \n" , y);
-                printf("O Elemento do vetor é %d \n" , vec_final[j]);
+                //printf("O Elemento do vetor é %d \n" , vec_final[j]);
                 j++;
             }
-
             i = i + 1;
-            
+    
             //printf("I é %d \n" , i);
             // deixar esse delay!
             vTaskDelay(pdMS_TO_TICKS(50));
