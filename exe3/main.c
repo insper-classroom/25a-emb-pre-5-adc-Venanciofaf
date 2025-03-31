@@ -26,13 +26,37 @@ void data_task(void *p) {
 void process_task(void *p) {
     int data = 0;
 
+    int i = 0;
+    int j = 0;
+    int vec_aux[50];
+    int vec_final[50];
+    int y; 
     while (true) {
         if (xQueueReceive(xQueueData, &data, 100)) {
             // implementar filtro aqui!
 
+            printf("O Dado é :  %d \n" , data);
+            
+            if (i < 5){
 
+                vec_aux[i] = data;
+                printf("O Elemento do vetor é %d \n" , vec_aux[i]);
+            }
 
+            else{
+                
+    
+                y = (int) ((vec_aux[i-1] + vec_aux[i-2] + vec_aux[i-3] + vec_aux[i-4] + vec_aux[i-5]) / 5);
+                vec_aux[i] = data;
+                vec_final[j] = y;
+                //printf("Y é : %d \n" , y);
+                printf("O Elemento do vetor é %d \n" , vec_final[j]);
+                j++;
+            }
 
+            i = i + 1;
+            
+            //printf("I é %d \n" , i);
             // deixar esse delay!
             vTaskDelay(pdMS_TO_TICKS(50));
         }
