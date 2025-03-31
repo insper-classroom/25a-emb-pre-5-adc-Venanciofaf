@@ -28,7 +28,7 @@ void process_task(void *p) {
 
     int i = 0;
     int j = 0;
-    int vec_size = 64
+    int vec_size = 64;
     int vec_aux[vec_size];
     int vec_final[vec_size];
     int y; 
