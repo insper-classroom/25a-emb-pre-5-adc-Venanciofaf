@@ -28,8 +28,9 @@ void process_task(void *p) {
 
     int i = 0;
     int j = 0;
-    int vec_aux[64];
-    int vec_final[64];
+    int vec_size = 64
+    int vec_aux[vec_size];
+    int vec_final[vec_size];
     int y; 
     while (true) {
         if (xQueueReceive(xQueueData, &data, 100)) {
@@ -43,7 +44,7 @@ void process_task(void *p) {
                 //printf("O Elemento do vetor é %d \n" , vec_aux[i]);
             }
 
-            else if (i <= 63){
+            else if (i < vec_size){
                 
     
                 y = (int) ((vec_aux[i-1] + vec_aux[i-2] + vec_aux[i-3] + vec_aux[i-4] + vec_aux[i-5]) / 5);
