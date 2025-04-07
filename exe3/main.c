@@ -28,35 +28,24 @@ void process_task(void *p) {
 
     int i = 0;
     int j = 0;
-    int vec_size = 64;
-    int vec_aux[vec_size];
-    int vec_final[vec_size];
-    int y; 
+    int vec_aux[5] = {0, 0, 0, 0, 0};
+    int transformada;
     while (true) {
         if (xQueueReceive(xQueueData, &data, 100)) {
             // implementar filtro aqui!
 
-            printf("O Dado é :  %d \n" , data);
+            //printf("O Dado é :  %d \n" , data);
             
-            if (i < 5){
-
-                vec_aux[i] = data;
-                //printf("O Elemento do vetor é %d \n" , vec_aux[i]);
+            if (i < 4){
+                i++;
             }
-
-            else if (i < vec_size){
-                
-    
-                y = (int) ((vec_aux[i-1] + vec_aux[i-2] + vec_aux[i-3] + vec_aux[i-4] + vec_aux[i-5]) / 5);
-                vec_aux[i] = data;
-                vec_final[j] = y;
-                //printf("Y é : %d \n" , y);
-                //printf("O Elemento do vetor é %d \n" , vec_final[j]);
-                j++;
+            else{
+                i = 0;
             }
-            i = i + 1;
-    
-            //printf("I é %d \n" , i);
+        
+            transformada = (vec_aux[0] + vec_aux[1] + vec_aux[2] + vec_aux[3] + vec_aux[4]) / 5;
+
+            printf("A Transformada é : %d" , transformada);
             // deixar esse delay!
             vTaskDelay(pdMS_TO_TICKS(50));
         }
