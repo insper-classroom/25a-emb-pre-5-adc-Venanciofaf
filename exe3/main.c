@@ -27,7 +27,6 @@ void process_task(void *p) {
     int data = 0;
 
     int i = 0;
-    int j = 0;
     int vec_aux[5] = {0, 0, 0, 0, 0};
     int transformada;
     while (true) {
@@ -42,10 +41,11 @@ void process_task(void *p) {
             else{
                 i = 0;
             }
-        
+            
+            vec_aux[i] = data;
             transformada = (vec_aux[0] + vec_aux[1] + vec_aux[2] + vec_aux[3] + vec_aux[4]) / 5;
 
-            printf("A Transformada é : %d" , transformada);
+            printf("A Transformada é : %d \n" , transformada);
             // deixar esse delay!
             vTaskDelay(pdMS_TO_TICKS(50));
         }
